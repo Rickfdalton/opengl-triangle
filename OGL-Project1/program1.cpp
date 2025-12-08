@@ -84,7 +84,6 @@ int main()
     }
     glViewport(0, 0, 800, 600);
 
-
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
     //rendering pipeline
@@ -94,8 +93,6 @@ int main()
      0.0f, 0.5f, 0.0f
     };
 
-
-
     //vertex shader
     unsigned int vertex_shader;
     vertex_shader = glCreateShader(GL_VERTEX_SHADER);
@@ -104,7 +101,6 @@ int main()
 
     // check compile status
     checkCompileStatus(vertex_shader);
-
 
     //fragment shader
     unsigned int fragment_shader;
@@ -130,10 +126,8 @@ int main()
     glDeleteShader(vertex_shader);
     glDeleteShader(fragment_shader);
 
-
     unsigned int VBO; // vertex buffer object to store vertices in gpu memory
     glGenBuffers(1, &VBO);
-
 
     //bind VAO
     unsigned int VAO;
@@ -147,22 +141,16 @@ int main()
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
-    //use shader program
 
-    //glDeleteShader(vertex_shader);
-    //glDeleteShader(fragment_shader);
 
 
     while (!glfwWindowShouldClose(window)) {
         process_input(window);
 
-
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 3);
        
-
-
         glfwSwapBuffers(window);
         glfwPollEvents();
 
