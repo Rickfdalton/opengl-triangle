@@ -142,8 +142,7 @@ int main()
     glEnableVertexAttribArray(0);
 
 
-
-
+    //render loop
     while (!glfwWindowShouldClose(window)) {
         process_input(window);
 
