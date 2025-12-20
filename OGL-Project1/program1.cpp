@@ -1,51 +1,10 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include "shader.h"
 
 using namespace std;
 
-const char *vertexShaderSource = "#version 330 core\n"
-"layout (location = 0) in vec3 aPos;\n"
-"void main()\n"
-"{\n"
-"   gl_Position= vec4(aPos.x,aPos.y,aPos.z,1.0);\n"
-"}\0";
-
-const char* fragmentShaderSource = "#version 330 core\n"
-"out vec4 FragColor;\n"
-"void main()\n"
-"{\n"
-"   FragColor = vec4(1.0f,0.5f,0.5f,1.0f);\n"
-"}\0";
-
-void checkCompileStatus(unsigned int shader) {
-    // check compile status
-    int success, type;
-    char infoLog[512];
-    glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
-    glGetShaderiv(shader, GL_SHADER_TYPE, &type);
-
-    if (!success)
-    {
-        glGetShaderInfoLog(shader, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::COMPILATION_FAILED\n" << infoLog << std::endl;
-    }
-  
-}
-
-void checkLinkStatus(unsigned int program) {
-    // check link status
-    int success;
-    char infoLog[512];
-    glGetProgramiv(program, GL_LINK_STATUS, &success);
-
-    if (!success)
-    {
-        glGetProgramInfoLog(program, 512, NULL, infoLog);
-        std::cout << "ERROR::PROGRAM::LINK_FAILED\n" << infoLog << std::endl;
-    }
-
-}
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
@@ -86,48 +45,34 @@ int main()
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
+
+    //test
+    int nr_attrib;
+    glGetIntegerv(GL_MAX_VERTEX_ATTRIBS,&nr_attrib);
+    cout << "max vertex" << nr_attrib << endl;
+
+
     //rendering pipeline
     float vertices[] = {
-    -0.5f, -0.5f, 0.0f,
-     0.5f, -0.5f, 0.0f,
-     0.0f, 0.5f, 0.0f
+     0.0f,0.5f,0.0f, 1.0f, 0.0f, 0.0f,
+     0.0f,0.0f,0.0f, 0.0f, 1.0f, 0.0f,
+     0.5f,0.0f,0.0f, 0.0f, 0.0f, 1.0f, 
+    };
+    unsigned int indices[] = {  // note that we start from 0!
+        0,1,2,   // first triangle
     };
 
-    //vertex shader
-    unsigned int vertex_shader;
-    vertex_shader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertex_shader, 1, &vertexShaderSource, NULL);
-    glCompileShader(vertex_shader);
 
-    // check compile status
-    checkCompileStatus(vertex_shader);
+    Shader ourShader("C:/Users/Pc/source/repos/OGL-Project1/OGL-Project1/shader.vs", "C:/Users/Pc/source/repos/OGL-Project1/OGL-Project1/shader.fs");
 
-    //fragment shader
-    unsigned int fragment_shader;
-    fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragment_shader, 1, &fragmentShaderSource, NULL);
-    glCompileShader(fragment_shader);
-
-    // check compile status
-    checkCompileStatus(fragment_shader);
-
-    //shader program
-    unsigned int shaderProgram;
-    shaderProgram = glCreateProgram();
-
-    glAttachShader(shaderProgram, vertex_shader);
-    glAttachShader(shaderProgram, fragment_shader);
-    glLinkProgram(shaderProgram);
-
-    //check link status
-    checkLinkStatus(shaderProgram);
-
-    //delete shaders after linking
-    glDeleteShader(vertex_shader);
-    glDeleteShader(fragment_shader);
 
     unsigned int VBO; // vertex buffer object to store vertices in gpu memory
     glGenBuffers(1, &VBO);
+
+
+    unsigned int EBO;
+    glGenBuffers(1, &EBO);
+
 
     //bind VAO
     unsigned int VAO;
@@ -137,18 +82,35 @@ int main()
     //configure VBO
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    //EBO
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
     //set vertex attribute pointers
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
+
+    //set color attribute pointers 
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3* sizeof(float)));
+    glEnableVertexAttribArray(1);
+
 
 
     //render loop
     while (!glfwWindowShouldClose(window)) {
         process_input(window);
 
-        glUseProgram(shaderProgram);
+        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
         glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+
+        ourShader.use();
+        ourShader.setFloat("offset", 0.5f);
+        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+
+
        
         glfwSwapBuffers(window);
         glfwPollEvents();

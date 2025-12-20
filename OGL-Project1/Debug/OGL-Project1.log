@@ -1,0 +1,3 @@
+﻿  program1.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(741,5): error MSB6006: "CL.exe" exited with code 2.
+C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(1,10): fatal  error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
