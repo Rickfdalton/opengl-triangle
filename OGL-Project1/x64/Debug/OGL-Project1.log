@@ -1,3 +1,11 @@
 ﻿  program1.cpp
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(49,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(50,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(53,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(54,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(55,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(56,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(276,28): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(298,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(299,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   OGL-Project1.vcxproj -> C:\Users\Pc\source\repos\OGL-Project1\x64\Debug\OGL-Project1.exe
