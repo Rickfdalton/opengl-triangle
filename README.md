@@ -1,5 +1,8 @@
-# Custom Camera
+# Lighting
 
-A simple implementation for creating your own camera.
+A simple lighting implementation.
+Added ambient lighting + diffuse lighting and specular lighting
 
-[Click to view](https://drive.google.com/file/d/1uxsJGTfeP5VXJULpYpK50M8lT3-TViYY/view?usp=sharing)
+
+https://github.com/user-attachments/assets/77c62501-e417-4a9a-80e2-82bd7788da24
+
