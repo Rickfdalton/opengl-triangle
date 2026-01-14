@@ -212,6 +212,8 @@ int main()
         glBindVertexArray(VAO);
 
         ourShader.use();
+        ourShader.setVec3("viewPos", cam.cam_pos);
+
         glm::mat4 model;
         glm::mat4 view;
 
