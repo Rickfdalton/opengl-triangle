@@ -182,15 +182,27 @@ int main()
 
     dt = 0.0f;
     float last_time = 0.0f;
-    glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
+    glm::vec3 lightPos(2.2f, 1.0f, 1.0f);
 
 
     ourShader.use();
     glm::vec3 obj_col = glm::vec3( 1.0f, 0.5f, 0.31f);
-    glm::vec3 light_col = glm::vec3(1.0f,1.0f,1.0f);
+    glm::vec3 light_col;
+  
+
     ourShader.setVec3("objectColor", obj_col);
-    ourShader.setVec3("lightColor", light_col);
-    ourShader.setVec3("lightPos", lightPos);
+
+    //set material
+    ourShader.setVec3("material.ambient",glm::vec3(1.0f,0.5f,0.31f));
+    ourShader.setVec3("material.diffuse",glm::vec3( 1.0f, 0.5f, 0.31f));
+    ourShader.setVec3("material.specular", glm::vec3(0.5f, 0.5f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+
+    //set light
+ 
+    ourShader.setVec3("light.specular", glm::vec3(1.0f));
+    ourShader.setVec3("light.position", lightPos);
+
 
     glm::mat4 projection; 
    
@@ -212,6 +224,14 @@ int main()
         glBindVertexArray(VAO);
 
         ourShader.use();
+        light_col.x = sin(glfwGetTime() * 2.0f);
+        light_col.y = sin(glfwGetTime() * 0.7f);
+        light_col.z = sin(glfwGetTime() * 1.3f);
+        
+        
+        ourShader.setVec3("light.diffuse", light_col * glm::vec3(1.0f));
+        ourShader.setVec3("light.ambient", light_col * glm::vec3(0.01f) );
+
         ourShader.setVec3("viewPos", cam.cam_pos);
 
         glm::mat4 model;
@@ -233,6 +253,13 @@ int main()
 
         //rendering light source==============================================
         lightShader.use();
+
+        glm::vec3 light_source_col;
+        light_source_col.x = sin(glfwGetTime() * 2.0f);
+        light_source_col.y = sin(glfwGetTime() * 1.0f);
+        light_source_col.z = sin(glfwGetTime() * 3.0f);
+        lightShader.setVec3("light_source_col", light_source_col);
+
 
         model = glm::mat4(1.0f);
         model = glm::translate(model, lightPos);
