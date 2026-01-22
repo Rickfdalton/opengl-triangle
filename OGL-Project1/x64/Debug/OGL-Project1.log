@@ -7,5 +7,35 @@ C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(32,19): warning 
 C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(33,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(34,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(39,30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(203,28): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(215,28): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(227,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(228,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(229,26): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(258,33): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(259,33): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Pc\source\repos\OGL-Project1\OGL-Project1\program1.cpp(260,33): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
   OGL-Project1.vcxproj -> C:\Users\Pc\source\repos\OGL-Project1\x64\Debug\OGL-Project1.exe
